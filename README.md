@@ -10,7 +10,7 @@ Example: `DATABASE_URL=postgresql://<username>:<password>@localhost:5432/bookshe
 psql -d bookshelf -U your_username -f create_books_table.sql
 ```
 
-3) Seed the database: `$ node backend/seedBooks.js`
+3) Seed the database: `node backend/seedBooks.js`
 
 4) Fire up the apps!
 ```
