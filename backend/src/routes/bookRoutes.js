@@ -14,15 +14,15 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
-  const { title, author, status } = req.body;
+  const { title, author, status, description, year, publisher, cover } = req.body;
   if (!title) return res.status(400).json({ error: 'Title is required' });
-  const newBook = await Book.create({ title, author, status });
+  const newBook = await Book.create({ title, author, status, description, year, publisher, cover });
   res.status(201).json(newBook);
 });
 
 router.put('/:id', async (req, res) => {
-  const { title, author, status } = req.body;
-  const updatedBook = await Book.update(req.params.id, { title, author, status });
+  const { title, author, status, description, year, publisher, cover } = req.body;
+  const updatedBook = await Book.update(req.params.id, { title, author, status, description, year, publisher, cover });
   if (!updatedBook) return res.status(404).json({ error: 'Book not found' });
   res.json(updatedBook);
 });

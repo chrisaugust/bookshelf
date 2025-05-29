@@ -11,19 +11,22 @@ const Book = {
     return result.rows[0] || null;
   },
 
-  async create({ title, author, status }) {
+  async create({ title, author, status, description, year, publisher, cover }) {
     const result = await pool.query(
-      'INSERT INTO books (title, author, status) VALUES ($1, $2, $3) RETURNING *',
-      [title, author, status || 'unread']
+      `INSERT INTO books (title, author, status, description, year, publisher, cover)
+       VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
+      [title, author, status || 'unread', description, year, publisher, cover]
     );
     return result.rows[0];
   },
 
   async update(id, fields) {
-    const { title, author, status } = fields;
+    const { title, author, status, description, year, publisher, cover } = fields;
     const result = await pool.query(
-      'UPDATE books SET title = $1, author = $2, status = $3 WHERE id = $4 RETURNING *',
-      [title, author, status, id]
+      `UPDATE books 
+       SET title = $1, author = $2, status = $3, description = $4, year = $5, publisher = $6, cover = $7
+       WHERE id = $8 RETURNING *`,
+      [title, author, status, description, year, publisher, cover, id]
     );
     return result.rows[0] || null;
   },
