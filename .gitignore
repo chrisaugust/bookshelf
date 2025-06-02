@@ -1,6 +1,7 @@
-# Node 
+#Node 
 backend/node_modules
 backend/.env
+backend/.env.test
 
 # Vite
 frontend/node_modules
